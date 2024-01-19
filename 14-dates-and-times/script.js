@@ -18,4 +18,6 @@ d = d.valueOf();
 
 d = new Date(1705700013502);
 
+d = Math.floor(Date.now() / 1000);
+
 console.log(d);
