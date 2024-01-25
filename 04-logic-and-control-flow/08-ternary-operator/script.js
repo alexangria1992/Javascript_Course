@@ -37,5 +37,5 @@ const auth = true;
 
 // console.log(redirect);
 
-auth ? console.log("Welcome to the dashboard") : null;
+// auth ? console.log("Welcome to the dashboard") : null;
 auth && console.log("Welcome to the dashboard");
