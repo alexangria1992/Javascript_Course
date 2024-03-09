@@ -58,6 +58,24 @@ function clearItems() {
   checkUI();
 }
 
+function filterItems(e) {
+  const text = e.target.value.toLowerCase();
+  console.log(text);
+  const items = itemList.querySelectorAll("li");
+  items.forEach((item) => {
+    // console.log(item);
+    const itemName = item.firstChild.textContent.toLowerCase();
+    console.log(itemName);
+    if (itemName.indexOf(text) != -1) {
+      // console.log(true);
+      item.style.display = "flex";
+    } else {
+      // console.log(false);
+      item.style.display = "none";
+    }
+  });
+}
+
 function checkUI() {
   const items = itemList.querySelectorAll("li");
 
@@ -70,9 +88,11 @@ function checkUI() {
     itemFilter.style.display = "block";
   }
 }
+
 //Event Listeners
 itemForm.addEventListener("submit", addItem);
 itemList.addEventListener("click", removeItem);
 clearBtn.addEventListener("click", clearItems);
+itemFilter.addEventListener("input", filterItems);
 
 checkUI();
