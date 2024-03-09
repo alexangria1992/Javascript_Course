@@ -1,35 +1,43 @@
-let output;
+// document.getElementById()
+console.log(document.getElementById("app-title"));
+console.log(document.getElementById("app-title").id);
+console.log(document.getElementById("app-title").className);
+console.log(document.getElementById("app-title").getAttribute("id"));
 
-output = document;
-output = document;
-output = document.documentElement;
+// setAttributes
+// console.log((document.getElementById("app-title").id = "new-id"));
+console.log((document.getElementById("app-title").title = "Shopping-List"));
+console.log;
+document.getElementById("app-title").setAttribute("class", "title");
 
-output = document.head;
-output = document.body;
+const title = document.getElementById("app-title");
+console.log(title);
 
-output = document.head.children;
-output = document.body.children;
+// Get/ change content
+console.log(title.textContent);
+title.textContent = "Hello";
+title.innerText = "hello Again";
+title.innerHTML = "<strong>Shopping List</strong>";
 
-output = document.body.doctype;
-output = document;
-output = document.characterSet;
-output = document.contentType;
-output = document.forms;
-output = document.forms[0];
+//Change styles
+title.style.color = "red";
+title.style.background = "black";
+title.style.padding = "10px";
+title.style.borderRadius = "10px";
 
-// document.forms[0].id = "new-id";
-output = document.links;
-output = document.links[0];
-output = document.links[0].href;
-output = document.links[0].id = "google-link";
-output = document.links[0].href = "https://facebook.com";
-output = document.links[0].href = "https://facebook.com";
-output = document.links[0].className = "google-class";
-output = document.links[0].classList;
-output = document.images;
-output = document.images[0];
+// document.querySelector(*)
+console.log(document.querySelector("h1"));
+console.log(document.querySelector("#app-title"));
+console.log(document.querySelector(".container"));
+console.log(document.querySelector("input[type=text"));
 
-const forms = Array.from(document.forms);
-forms.forEach((form) => console.log(form));
+console.log(document.querySelector("li:nth-child(2)").innerText);
+const secondItem = document.querySelector("li:nth-child(2)");
+secondItem.innerText = "Apple Juice";
+secondItem.style.color = "red";
 
-console.log(output);
+// USe thse methods on other elemnts
+const list = document.querySelector("ul");
+console.log(list);
+const firstItem = list.querySelector("li");
+firstItem.style.color = "red";
