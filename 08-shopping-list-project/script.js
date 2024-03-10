@@ -70,20 +70,38 @@ function createIcon(classes) {
   return icon;
 }
 
-function removeItem(e) {
-  // console.log(e.target.parentElement.classList);
+function onClickItem(e) {
   if (e.target.parentElement.classList.contains("remove-item")) {
-    if (confirm("Are you sure?")) {
-      e.target.parentElement.parentElement.remove();
-      checkUI();
-    }
+    removeItem(e.target.parentElement.parentElement);
   }
+}
+
+function removeItem(item) {
+  // console.log(item);
+  if (confirm("Are you sure you want to remove?")) {
+    item.remove();
+
+    // Remove item from storage
+    removeItemFromStorage(item.textContent);
+    checkUI();
+  }
+}
+
+function removeItemFromStorage(item) {
+  let itemsFromStorage = getItemsFromStorage();
+  // console.log(itemsFromStorage);
+  // filter out item to be removed
+  itemsFromStorage = itemsFromStorage.filter((i) => i !== item);
+
+  //Res-set to localstorage
+  localStorage.setItem("items", JSON.stringify(itemsFromStorage));
 }
 
 function clearItems() {
   while (itemList.firstChild) {
     itemList.removeChild(itemList.firstChild);
   }
+  localStorage.removeItem("items");
   checkUI();
 }
 
@@ -122,7 +140,7 @@ function checkUI() {
 function init() {
   //Event Listeners
   itemForm.addEventListener("submit", onAddItemSubmit);
-  itemList.addEventListener("click", removeItem);
+  itemList.addEventListener("click", onClickItem);
   clearBtn.addEventListener("click", clearItems);
   itemFilter.addEventListener("input", filterItems);
   document.addEventListener("DOMContentLoaded", displayItems);
